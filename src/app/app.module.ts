@@ -12,6 +12,8 @@ import {
 } from './layout';
 import {httpInterceptorProviders} from "./interceptors";
 import {HttpClientModule} from "@angular/common/http";
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { AccessDeniedComponent } from './pages/access-denied/access-denied.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import {HttpClientModule} from "@angular/common/http";
     MainComponent,
     SidebarComponent,
     TopbarComponent,
-    FooterComponent
+    FooterComponent,
+    NotFoundComponent,
+    AccessDeniedComponent
   ],
   imports: [
     BrowserModule,
