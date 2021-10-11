@@ -2,8 +2,13 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const HOST = 'https://dummyapi.io/data';
+
 export const environment = {
-  production: false
+  production: false,
+  HOST,
+  API_URL: HOST + '/v1',
+  APP_ID: '61639122ee1c0ef83fe20613'
 };
 
 /*

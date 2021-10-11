@@ -1,0 +1,7 @@
+<div *ngFor="let comment of comments">
+  <img [src]="comment.owner?.picture" class="rounded-circle" alt=""
+       width="50px"> {{comment.owner?.firstName}} {{comment.owner?.lastName}}
+  <p>{{comment.message}}</p>
+  <small class="text-secondary">Publicado: {{comment.publishDate | date}}</small>
+  <hr>
+</div>

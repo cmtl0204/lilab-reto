@@ -1,0 +1,92 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-12">
+      <div *ngIf="loadingPosts" class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="selectedTag!=''" class="row">
+    <div class="col-2">
+      <button class="btn btn-primary" (click)="loadPosts()">Ver todos</button>
+    </div>
+  </div>
+  <div *ngIf="selectedTag!=''" class="row">
+    <div class="col-2">
+      <b>Filtrado por: </b> {{selectedTag}}
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let post of posts" class="col-3 mt-3">
+      <div class="card" style="width: 18rem; height: 32rem">
+        <img class="card-img-top" [src]="post.image" height="150px" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title" (click)="loadUserProfile(post?.owner?.id!)">Autor:
+            <button class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#profileModal">
+              {{post.owner?.firstName}} {{post.owner?.lastName}}
+            </button>
+          </h5>
+          <hr>
+          <p class="card-text">{{post.text}}</p>
+          <hr>
+          {{post.likes}}<i class="bi bi-hand-thumbs-up"></i>
+          <button class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#commentsModal"
+                  (click)="loadComments(post.id!)">Ver comentarios</button>
+          <i class="bi bi-chat-left-text"></i>
+          <hr>
+          <small><b>Etiquetas:</b>
+            <button *ngFor="let tag of post.tags" class="btn btn-link btn-sm" (click)="filterByTag(tag)">
+              #{{tag}}
+            </button>
+          </small>
+          <hr>
+          <small class="text-secondary"><b>Publicado:</b> {{post.publishDate | date}}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Comments Modal -->
+<div class="modal fade" id="commentsModal" tabindex="-1" aria-labelledby="commentsModal"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="commentsModalLabel">{{comments?.length}} Comentarios:</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="loadingComments" class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div *ngIf="!comments?.length && !loadingComments" class="alert alert-info" role="alert">
+          No se encontraron comentarios.
+        </div>
+        <app-comments [comments]="comments"></app-comments>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Profile Modal -->
+<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModal"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="profileModalLabel">Perfil:</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <app-profile [userForm]="userForm"></app-profile>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

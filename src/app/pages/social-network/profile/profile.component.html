@@ -1,0 +1,38 @@
+<form [formGroup]="userForm">
+
+  <div class="mb-3">
+    <img [src]="pictureField?.value" class="rounded-circle" alt="" width="80px">
+    {{titleField?.value}}
+  </div>
+  <div class="mb-3">
+    <label for="firstName" class="form-label">Nombre:</label>
+    <input type="text" id="firstName" formControlName="firstName" class="form-control" placeholder="firstName">
+  </div>
+  <div class="mb-3">
+    <label for="lastName" class="form-label">Apellido:</label>
+    <input type="text" id="lastName" formControlName="lastName" class="form-control" placeholder="lastName">
+  </div>
+  <div class="mb-3">
+    <label for="dateOfBirth" class="form-label">Fecha de nacimiento:</label>
+    <input type="date" id="dateOfBirth" formControlName="dateOfBirth" class="form-control" placeholder="dateOfBirth">
+  </div>
+  <div class="mb-3">
+    <label for="gender" class="form-label">Género:</label>
+    <select id="gender" formControlName="gender">
+      <option value="male">MASCULINO</option>
+      <option value="female">FEMENINO</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input type="email" id="email" formControlName="email" class="form-control" placeholder="email">
+  </div>
+  <div class="mb-3">
+    <label for="registerDate" class="form-label">Fecha de registro:</label>
+    <input type="text" id="registerDate" formControlName="registerDate" class="form-control" placeholder="registerDate">
+  </div>
+  <div class="mb-3">
+    <label for="updatedDate" class="form-label">Última fecha de actualización:</label>
+    <input type="text" id="updatedDate" formControlName="updatedDate" class="form-control" placeholder="updatedDate">
+  </div>
+</form>
